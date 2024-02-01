@@ -3,7 +3,7 @@ Here are list of "Rust Book Examples" - small applications modified, and part of
 
 # Structure
 Example are group in folders that represent particular chapters.
-Every chapter-folder is devided on "Examples" and "Exercises", because in the book occur sometimes exercises to practics.
+Every chapter-folder is devided on "Examples" and "Exercises", because in the book occur sometimes exercises to practics. There are only src code with Cargo toml and lock files.
 
 # Why Rust Book on Github?
 The Rust-lang it's very specific programming language and I consider it is important to know not only how to write the code, but also theory of Rust. It come to me when I found out that even some seniors programmers have some problems with "Rust pfilosopy". So, That's let me think knowing the theory of Rust is mandatory and to proof I have read the book - I uploaded partly modified examples and exercises from the book as a proof.
