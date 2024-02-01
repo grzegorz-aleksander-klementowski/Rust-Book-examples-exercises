@@ -1,0 +1,1 @@
+/home/klemensgak/Projekty/src/Rust/Rust\ Book\ -\ The\ Rust\ Programming\ Language/chapter_3/exercises/ex3_print_the_welve_ays_of_hristmas/target/debug/ex3_print_the_welve_ays_of_hristmas: /home/klemensgak/Projekty/src/Rust/Rust\ Book\ -\ The\ Rust\ Programming\ Language/chapter_3/exercises/ex3_print_the_welve_ays_of_hristmas/src/main.rs
