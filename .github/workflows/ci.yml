@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-all-crates:
+    runs-on: ubuntu-latest
+    steps:
+      # klonuje kod dla chmury
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses:  actions-rs/toolchain@v1
+
+      - name: Find and test every crate
+        run: |
+          find . -maxdepth 3 -type f -name Cargo.toml \
+          | sed 's|/Cargo.toml||' \
+          | while read dir; do
+          echo "testing $dir"
+          cd "$dir"
+          cargo build --verbose
+          cargo test --verbose
+          cd - >/dev/null
+          done
+
