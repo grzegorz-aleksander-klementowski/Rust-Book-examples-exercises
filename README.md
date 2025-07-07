@@ -1,5 +1,9 @@
 # Rust Book Examples
 
+[![CI](https://github.com/GRZEGORZ-ALEKSANDER-KLEMENTOWSKI/Rust-Book-examples-exercises/actions/workflows/ci.yml/badge.svg)](https://github.com/GRZEGORZ-ALEKSANDER-KLEMENTOWSKI/Rust-Book-examples-exercises/actions/workflows/ci.yml)
+[![GPG-signed commits](https://img.shields.io/badge/commits-signed-green)](https://docs.github.com/authentication/managing-commit-signature-verification)
+
+
 This repository contains a collection of "Rust Book Examples" – small applications modified and, in some cases, extended from the official Rust Documentation: [Rust Book](https://doc.rust-lang.org/book/).
 
 ## Structure
