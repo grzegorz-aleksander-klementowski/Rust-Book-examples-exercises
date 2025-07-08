@@ -32,3 +32,10 @@ jobs:
           cd - >/dev/null
           done
 
+    strategy:
+      fail-fast: true
+      matrix:
+        toolchain: [stable, beta, nightly]
+        os: [ubuntu-latest, windows-lastest, macos-lastest]
+        runs-on: ${{matrix.os}}
+
