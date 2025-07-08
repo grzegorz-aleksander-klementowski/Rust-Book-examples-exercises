@@ -8,18 +8,25 @@ on:
 
 jobs:
   test-all-crates:
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        toolchain: [stable, beta, nightly]
+        os: [ubuntu-latest, macos-latest]
+
+    runs-on: ${{ matrix.os}}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Install Rust
-        uses:  actions-rs/toolchain@v1
+        uses: actions-rs/toolchain@v1
         with:
-          toolchain: ${{matrix.toolchain}}
+          toolchain: ${{ matrix.toolchain }}
           override: true
 
-      - name: Chache Cargo registry (skrzyneczka)
+      - name: Cache Cargo registry
         uses: actions/cache@v3
         with:
           path: ~/.cargo/registry
@@ -36,17 +43,11 @@ jobs:
           find . -maxdepth 3 -type f -name Cargo.toml \
           | sed 's|/Cargo.toml||' \
           | while read dir; do
-          echo "testing $dir"
+          echo "testing $dir on ${{ matrix.toolchain }}"
           cd "$dir"
           cargo build --verbose
           cargo test --verbose
           cd - >/dev/null
           done
 
-    strategy:
-      fail-fast: true
-      matrix:
-        toolchain: [stable, beta, nightly]
-        os: [ubuntu-latest, windows-lastest, macos-lastest]
-        runs-on: ${{matrix.os}}
 
