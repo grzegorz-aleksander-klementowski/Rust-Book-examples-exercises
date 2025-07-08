@@ -16,7 +16,7 @@ jobs:
       - name: Install Rust
         uses:  actions-rs/toolchain@v1
         with:
-          toolchain: stable
+          toolchain: ${{matrix.toolchain}}
           override: true
 
       - name: Chache Cargo registry (skrzyneczka)
@@ -24,6 +24,12 @@ jobs:
         with:
           path: ~/.cargo/registry
           key: ${{ runner.os }}-cargo-registry-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Run Rust fmt check
+        run: cargo fmt --all -- --check
+
+      - name: Run clippy
+        run: cargo clippy --all-targets -- -D warnings
 
       - name: Find and test every crate
         run: |
