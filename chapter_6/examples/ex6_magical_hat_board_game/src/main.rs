@@ -30,9 +30,12 @@ impl Player {
             MagicalEquipment::Hat(_) => false,
             _ => true,
         });
-        
+
         if original_len > self.equipment.len() {
-            println!("A magical creature removes a hat from {}'s collection.", self.name);
+            println!(
+                "A magical creature removes a hat from {}'s collection.",
+                self.name
+            );
         } else {
             println!("{} has no hat to remove.", self.name);
         }
@@ -51,4 +54,3 @@ fn main() {
     // Show the player's current equipment
     println!("{:?}'s equipment: {:?}", player.name, player.equipment);
 }
-

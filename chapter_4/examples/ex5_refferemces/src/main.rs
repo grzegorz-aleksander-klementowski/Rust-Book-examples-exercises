@@ -1,5 +1,5 @@
 fn main() {
-    let reference_to_nothing=dangle();
+    let reference_to_nothing = dangle();
 }
 
 fn dangle() -> &String {

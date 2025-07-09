@@ -7,5 +7,3 @@ fn main() {
         println!("{}", byte);
     }
 }
-
-

@@ -1,17 +1,14 @@
 fn main() {
-    
-    another_function(5,'h');
-    
+    another_function(5, 'h');
 
     let x = five();
     println!("The value of x is: {x}");
 
     let x = plus_one(5);
     println!("The value of x is: {x}");
-
 }
 
-fn another_function (value: i32, unit_label: char) {
+fn another_function(value: i32, unit_label: char) {
     println!("The measurment is {value}{unit_label}.");
 }
 
@@ -20,6 +17,5 @@ fn five() -> i32 {
 }
 
 fn plus_one(x: i32) -> i32 {
-    x+1
+    x + 1
 }
-

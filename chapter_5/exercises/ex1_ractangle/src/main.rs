@@ -4,32 +4,30 @@ struct Rectangle {
     height: usize,
 }
 
-impl Rectangle { 
-
-        fn area(&self) -> usize {
-    &self.width * self.height
-        }
-
-        fn width(&self) -> bool { // Methods like this are called getters
-            self.width > 0
-        }
-
-        fn can_hold(&self, other: &Rectangle) -> bool {
-            self.width > other.width && self.height > other.height
-        }
-
-        fn square(size: usize) -> Self { // associated functions Associated functions that aren’t methods are often used for constructors that will return a new instance of the struct. These are often called new, but new isn’t a special name and isn’t built into the language. 
-            Self {
-                width: size,
-                height: size,
-            }
-        }
-
+impl Rectangle {
+    fn area(&self) -> usize {
+        &self.width * self.height
     }
 
+    fn width(&self) -> bool {
+        // Methods like this are called getters
+        self.width > 0
+    }
+
+    fn can_hold(&self, other: &Rectangle) -> bool {
+        self.width > other.width && self.height > other.height
+    }
+
+    fn square(size: usize) -> Self {
+        // associated functions Associated functions that aren’t methods are often used for constructors that will return a new instance of the struct. These are often called new, but new isn’t a special name and isn’t built into the language.
+        Self {
+            width: size,
+            height: size,
+        }
+    }
+}
 
 fn main() {
-
     let scale: usize = 1;
 
     let rect1 = Rectangle {
@@ -48,13 +46,13 @@ fn main() {
     };
 
     let sq = Rectangle::square(3);
-    
+
     println!("rect1 is {:?}", rect1);
 
     println!(
         "The area of the rectangle is {} square pixels.",
         rect1.area()
-        );
+    );
 
     if rect1.width() {
         println!("The rectangle has a nonzero width; it is {}", rect1.width);
@@ -63,9 +61,5 @@ fn main() {
     println!("Can rect1 hold rect2? {}", rect1.can_hold(&rect2));
     println!("Can rect1 hold rect3? {}", rect1.can_hold(&rect3));
 
-
-
     dbg!(&rect1);
 }
-
-

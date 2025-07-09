@@ -1,6 +1,6 @@
 fn main() {
-   let my_string = String::from("hello world");
-   println!("First world: {}", first_word(&my_string));
+    let my_string = String::from("hello world");
+    println!("First world: {}", first_word(&my_string));
 }
 
 fn first_word(s: &String) -> &str {

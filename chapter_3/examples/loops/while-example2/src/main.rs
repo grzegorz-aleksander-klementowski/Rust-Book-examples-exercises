@@ -3,9 +3,8 @@ fn main() {
     let mut index = 0;
 
     while index < 5 {
-     println!("The value is: {}", a[index]);
+        println!("The value is: {}", a[index]);
 
-     index += 1;
+        index += 1;
     }
 }
-

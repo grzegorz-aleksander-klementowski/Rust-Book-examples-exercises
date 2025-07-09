@@ -1,10 +1,11 @@
 #[derive(Debug)]
 enum UsStates {
-        Alaska,
-        Alabama,
-        California, Texsas,
-        // -- snip --
-    }
+    Alaska,
+    Alabama,
+    California,
+    Texsas,
+    // -- snip --
+}
 
 enum Coin {
     Penny,

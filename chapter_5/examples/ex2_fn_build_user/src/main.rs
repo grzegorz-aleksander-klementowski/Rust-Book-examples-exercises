@@ -27,8 +27,5 @@ fn main() {
     let user2 = User {
         email: String::from("user2@email.com"),
         ..user1
-
     };
 }
-
-

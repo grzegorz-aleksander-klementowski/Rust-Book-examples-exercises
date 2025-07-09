@@ -50,7 +50,11 @@ use std::fmt;
 
 impl fmt::Display for Ipv4Addr {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}.{}.{}.{}", self.octet1, self.octet2, self.octet3, self.octet4)
+        write!(
+            f,
+            "{}.{}.{}.{}",
+            self.octet1, self.octet2, self.octet3, self.octet4
+        )
     }
 }
 
@@ -72,7 +76,6 @@ impl Ipv6Addr {
     }
 }
 
-
 fn main() {
     let home_v4 = Ipv4Addr::new("127.0.0.1").expect("Invalid IPv4 address");
     let loopback_v6 = Ipv6Addr::new("::1");
@@ -90,4 +93,3 @@ fn main() {
         _ => (),
     }
 }
-
