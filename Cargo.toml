@@ -1,8 +1,14 @@
-[workspace]
 members = [
   "chapter_1/*",
   "chapter_2/*",
   "chapter_3/examples/*",
+  "chapter_3/examples/loops/example1",
+  "chapter_3/examples/loops/example2",
+  "chapter_3/examples/loops/example3",
+  "chapter_3/examples/loops/for-example1",
+  "chapter_3/examples/loops/for-example-counter",
+  "chapter_3/examples/loops/while-example1",
+  "chapter_3/examples/loops/while-example2",
   "chapter_3/exercises/*",
   "chapter_4/examples/*",
   "chapter_4/exercises/*",
