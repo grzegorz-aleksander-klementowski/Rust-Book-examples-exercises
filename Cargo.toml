@@ -1,0 +1,13 @@
+[workspace]
+members = [
+  "chapter_1/*",
+  "chapter_2/*",
+  "chapter_3/examples/*",
+  "chapter_3/exercises/*",
+  "chapter_4/examples/*",
+  "chapter_4/exercises/*",
+  "chapter_5/examples/*",
+  "chapter_5/exercises/*",
+  "chapter_6/examples/*",
+  "chapter_7/examples/*",
+]
