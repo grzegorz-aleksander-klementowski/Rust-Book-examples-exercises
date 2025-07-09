@@ -1,0 +1,1 @@
+/home/klemensgak/Pisma/prace/złomek/Rust-Book-examples-exercises/target/debug/ex2_enum_with_structs: /home/klemensgak/Pisma/prace/złomek/Rust-Book-examples-exercises/chapter_6/examples/ex2_enum_with_structs/src/main.rs

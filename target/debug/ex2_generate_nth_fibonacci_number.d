@@ -1,0 +1,1 @@
+/home/klemensgak/Pisma/prace/złomek/Rust-Book-examples-exercises/target/debug/ex2_generate_nth_fibonacci_number: /home/klemensgak/Pisma/prace/złomek/Rust-Book-examples-exercises/chapter_3/exercises/ex2_generate_nth_fibonacci_number/src/main.rs

@@ -1,0 +1,1 @@
+/home/klemensgak/Pisma/prace/złomek/Rust-Book-examples-exercises/target/debug/ex3_print_the_welve_ays_of_hristmas: /home/klemensgak/Pisma/prace/złomek/Rust-Book-examples-exercises/chapter_3/exercises/ex3_print_the_welve_ays_of_hristmas/src/main.rs

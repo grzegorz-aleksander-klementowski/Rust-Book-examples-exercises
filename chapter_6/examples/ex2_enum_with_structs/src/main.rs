@@ -25,4 +25,3 @@ fn main() {
 
     let home_ip = IpAddr::V4(home_v4);
 }
-

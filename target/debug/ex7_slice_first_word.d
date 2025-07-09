@@ -1,0 +1,1 @@
+/home/klemensgak/Pisma/prace/złomek/Rust-Book-examples-exercises/target/debug/ex7_slice_first_word: /home/klemensgak/Pisma/prace/złomek/Rust-Book-examples-exercises/chapter_4/exercises/ex1_slice_first_word/src/main.rs

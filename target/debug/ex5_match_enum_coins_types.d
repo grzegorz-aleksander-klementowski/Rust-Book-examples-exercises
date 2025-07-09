@@ -1,0 +1,1 @@
+/home/klemensgak/Pisma/prace/złomek/Rust-Book-examples-exercises/target/debug/ex5_match_enum_coins_types: /home/klemensgak/Pisma/prace/złomek/Rust-Book-examples-exercises/chapter_6/examples/ex5_match_enum_coins_types/src/main.rs

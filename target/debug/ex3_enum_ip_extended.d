@@ -1,0 +1,1 @@
+/home/klemensgak/Pisma/prace/złomek/Rust-Book-examples-exercises/target/debug/ex3_enum_ip_extended: /home/klemensgak/Pisma/prace/złomek/Rust-Book-examples-exercises/chapter_6/examples/ex3_enum_ip_extended/src/main.rs

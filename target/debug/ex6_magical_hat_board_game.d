@@ -1,0 +1,1 @@
+/home/klemensgak/Pisma/prace/złomek/Rust-Book-examples-exercises/target/debug/ex6_magical_hat_board_game: /home/klemensgak/Pisma/prace/złomek/Rust-Book-examples-exercises/chapter_6/examples/ex6_magical_hat_board_game/src/main.rs

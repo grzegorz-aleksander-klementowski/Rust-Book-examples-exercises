@@ -1,0 +1,1 @@
+/home/klemensgak/Pisma/prace/złomek/Rust-Book-examples-exercises/target/debug/for-example1: /home/klemensgak/Pisma/prace/złomek/Rust-Book-examples-exercises/chapter_3/examples/loops/for-example1/src/main.rs

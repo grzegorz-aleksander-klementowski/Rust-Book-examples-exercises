@@ -1,0 +1,1 @@
+/home/klemensgak/Pisma/prace/złomek/Rust-Book-examples-exercises/target/debug/ex1_ractangle: /home/klemensgak/Pisma/prace/złomek/Rust-Book-examples-exercises/chapter_5/exercises/ex1_ractangle/src/main.rs
