@@ -2,7 +2,8 @@
 members = [
   "chapter_1/*",
   "chapter_2/*",
-  "chapter_3/examples/*",
+  "chapter_3/examples/another_funciton",
+  "chapter_3/examples/branches",
   "chapter_3/examples/loops/example1",
   "chapter_3/examples/loops/example2",
   "chapter_3/examples/loops/example3",
@@ -18,3 +19,4 @@ members = [
   "chapter_6/examples/*",
   "chapter_7/examples/*",
 ]
+
