@@ -1,0 +1,9 @@
+/home/klemensgak/Pisma/prace/złomek/Rust-Book-examples-exercises/target/debug/deps/libfor_example1-08722f03db184ebf.rmeta: chapter_3/examples/loops/for-example1/src/main.rs Cargo.toml
+
+/home/klemensgak/Pisma/prace/złomek/Rust-Book-examples-exercises/target/debug/deps/for_example1-08722f03db184ebf.d: chapter_3/examples/loops/for-example1/src/main.rs Cargo.toml
+
+chapter_3/examples/loops/for-example1/src/main.rs:
+Cargo.toml:
+
+# env-dep:CLIPPY_ARGS=-A__CLIPPY_HACKERY__clippy:all__CLIPPY_HACKERY__
+# env-dep:CLIPPY_CONF_DIR

@@ -44,9 +44,6 @@ jobs:
       - name: Run Rust fmt check
         run: cargo fmt --all -- --check
 
-      - name: Run clippy (wanings only)
-        run: cargo clippy --all-targets
-
       # it use single manifest root `Cargo.toml`
       - name: Build all crates
         run: cargo build --all --verbose
