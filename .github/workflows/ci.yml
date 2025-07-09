@@ -47,16 +47,11 @@ jobs:
       - name: Run clippy
         run: cargo clippy --all-targets -- -D warnings
 
-      - name: Find and test every crate
-        run: |
-          find . -maxdepth 3 -type f -name Cargo.toml \
-          | sed 's|/Cargo.toml||' \
-          | while read dir; do
-          echo "testing $dir on ${{ matrix.toolchain }}"
-          cd "$dir"
-          cargo build --verbose
-          cargo test --verbose
-          cd - >/dev/null
-          done
+      # it use single manifest root `Cargo.toml`
+      - name: Build all crates
+        run: cargo build --all --verbose
 
+      # it use single manifest root `Cargo.toml`
+      - name: Test all crates
+        run: cargo test --all --verbose
 
