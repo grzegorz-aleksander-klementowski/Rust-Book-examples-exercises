@@ -21,11 +21,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install Rust
+      - name: Install Rust toolchain + components
         uses: actions-rs/toolchain@v1
         with:
           toolchain: ${{ matrix.toolchain }}
           override: true
+          components: rustfmt, clippy
 
       - name: Cache Cargo registry
         uses: actions/cache@v3
