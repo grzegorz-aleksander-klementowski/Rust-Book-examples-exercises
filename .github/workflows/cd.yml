@@ -6,4 +6,17 @@ on:
       - 'v*.*.*'
 
 jobs:
-  release
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          tag_name: ${{ github.ref_name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build release binary
+        run: cargo build release all
+
+
