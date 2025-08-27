@@ -17,6 +17,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build release binary
-        run: cargo build release all
+        run: cargo build --release --all
+
+      - name: Create Github release
+        uses: softprops/actions-gh-release
 
 
