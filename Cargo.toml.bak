@@ -1,0 +1,42 @@
+[workspace]
+members = [
+  ./chapter_1/hello_cargo
+  ./chapter_2/guessing_game
+  ./chapter_3/examples/another_funciton
+  ./chapter_3/examples/branches
+  ./chapter_3/examples/loops/example1
+  ./chapter_3/examples/loops/example2
+  ./chapter_3/examples/loops/example3
+  ./chapter_3/examples/loops/for-example1
+  ./chapter_3/examples/loops/for-example-counter
+  ./chapter_3/examples/loops/while-example1
+  ./chapter_3/examples/loops/while-example2
+  ./chapter_3/examples/saturating_example
+  ./chapter_3/examples/variables
+  ./chapter_3/exercises/ex1_frahrenheit-celsius_converter
+  ./chapter_3/exercises/ex2_generate_nth_fibonacci_number
+  ./chapter_3/exercises/ex2_generate_nth_fibonacci_number-the_best_example
+  ./chapter_3/exercises/ex3_print_the_welve_ays_of_hristmas
+  ./chapter_4/examples/ex1_ownsership
+  ./chapter_4/examples/ex2_ownsership
+  ./chapter_4/examples/ex3_refferences
+  ./chapter_4/examples/ex4_refferemces
+  ./chapter_4/examples/ex5_refferemces
+  ./chapter_4/examples/ex6_slice
+  ./chapter_4/exercises/ex1_slice_first_word
+  ./chapter_5/examples/ex1_basic_stuct_with_change
+  ./chapter_5/examples/ex2_fn_build_user
+  ./chapter_5/examples/ex3_tuple_struct
+  ./chapter_5/examples/ex4_struct_ip_address
+  ./chapter_5/exercises/ex1_ractangle
+  ./chapter_6/examples/ex1_enum_ip_address
+  ./chapter_6/examples/ex2_enum_with_structs
+  ./chapter_6/examples/ex3_enum_ip_extended
+  ./chapter_6/examples/ex4_enum_messages_vs_struct
+  ./chapter_6/examples/ex5_match_enum_coins_types
+  ./chapter_6/examples/ex6_magical_hat_board_game
+  ./chapter_7/examples/backyard
+  ./chapter_7/examples/my-project
+  ./chapter_7/examples/restauracja
+]
+
