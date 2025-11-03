@@ -29,6 +29,14 @@ mod back_of_house {
     }
 }
 
+pub fn eat_at_restaurant() {
+    // Ścieżka całkowita (absolutna, ang. absolute path)
+    crate::front_of_house::hosting::add_to_waitlist();
+
+    // Ścieżka pokrewna (ang. relative path)
+    front_of_house::hosting::add_to_waitlist();
+}
+
 #[cfg(test)]
 mod tests {
     // use super::*;
