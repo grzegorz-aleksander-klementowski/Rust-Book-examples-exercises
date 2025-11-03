@@ -1,7 +1,6 @@
 # Rust Book Examples
 
 [![CI](https://github.com/GRZEGORZ-ALEKSANDER-KLEMENTOWSKI/Rust-Book-examples-exercises/actions/workflows/ci.yml/badge.svg)](https://github.com/GRZEGORZ-ALEKSANDER-KLEMENTOWSKI/Rust-Book-examples-exercises/actions/workflows/ci.yml)
-[![Clippy Lints](https://img.shields.io/badge/Clippy-clean-brightgreen)](#)
 [![GPG-signed commits](https://img.shields.io/badge/commits-signed-green)](https://docs.github.com/authentication/managing-commit-signature-verification)
 
 
