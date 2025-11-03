@@ -1,1 +1,0 @@
-/home/klemensgak/Pisma/prace/złomek/Rust-Book-examples-exercises/target/debug/ex4_enum_messages_vs_struct: /home/klemensgak/Pisma/prace/złomek/Rust-Book-examples-exercises/chapter_6/examples/ex4_enum_messages_vs_struct/src/main.rs

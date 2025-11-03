@@ -1,1 +1,0 @@
-/home/klemensgak/Pisma/prace/złomek/Rust-Book-examples-exercises/target/debug/librestauracja.rlib: /home/klemensgak/Pisma/prace/złomek/Rust-Book-examples-exercises/chapter_7/examples/restauracja/src/lib.rs

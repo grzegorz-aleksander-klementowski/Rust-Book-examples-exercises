@@ -1,1 +1,0 @@
-/home/klemensgak/Pisma/prace/złomek/Rust-Book-examples-exercises/target/debug/frahrenheit-celsius_converter: /home/klemensgak/Pisma/prace/złomek/Rust-Book-examples-exercises/chapter_3/exercises/ex1_frahrenheit-celsius_converter/src/main.rs

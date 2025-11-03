@@ -1,1 +1,0 @@
-/home/klemensgak/Pisma/prace/złomek/Rust-Book-examples-exercises/target/debug/ex2_tuple_struct: /home/klemensgak/Pisma/prace/złomek/Rust-Book-examples-exercises/chapter_5/examples/ex3_tuple_struct/src/main.rs

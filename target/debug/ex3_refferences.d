@@ -1,1 +1,0 @@
-/home/klemensgak/Pisma/prace/złomek/Rust-Book-examples-exercises/target/debug/ex3_refferences: /home/klemensgak/Pisma/prace/złomek/Rust-Book-examples-exercises/chapter_4/examples/ex3_refferences/src/main.rs
