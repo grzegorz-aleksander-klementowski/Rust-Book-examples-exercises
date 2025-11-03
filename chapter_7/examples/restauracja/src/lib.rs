@@ -1,3 +1,8 @@
+// answers of the quis (https://rust-book.cs.brown.edu/ch07-03-paths-for-referring-to-an-item-in-the-module-tree.html)
+// 1. crate;
+// 2. This program does not compile.
+// 3. he output of this program will be: b
+
 #[allow(dead_code)]
 mod front_of_house {
     //having only `hosting` module public, the contents of hosting are still private; making the module public doesn’t make its contents public
@@ -31,13 +36,14 @@ mod back_of_house {
 }
 
 // Extended example thus mentioned in the book
+#[allow(dead_code)]
 mod customer_experience {
     pub fn eat_at_restaurant() {
         // Ścieżka całkowita (absolutna, ang. absolute path)
         crate::front_of_house::hosting::add_to_waitlist();
 
         // Ścieżka pokrewna (ang. relative path)
-        front_of_house::hosting::add_to_waitlist();
+        // Front_of_house::hosting::add_to_waitlist(); // if not in `customer_experience` module
     }
 }
 
