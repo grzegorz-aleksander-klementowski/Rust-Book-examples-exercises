@@ -1,3 +1,4 @@
+#[allow(dead_code)]
 mod front_of_house {
     mod hosting {
         fn add_to_waitlist() {}
@@ -11,6 +12,8 @@ mod front_of_house {
     }
 }
 
+// added as example to fullfill `mod back_of_house`
+#[allow(dead_code)]
 mod back_of_house {
     mod cooking {
         fn receive_orders() {}
@@ -28,7 +31,7 @@ mod back_of_house {
 
 #[cfg(test)]
 mod tests {
-    use super::*;
+    // use super::*;
 
     #[test]
     fn it_works() {
