@@ -1,7 +1,8 @@
 #[allow(dead_code)]
 mod front_of_house {
-    mod hosting {
-        fn add_to_waitlist() {}
+    //having only `hosting` module public, the contents of hosting are still private; making the module public doesn’t make its contents public
+    pub mod hosting {
+        pub fn add_to_waitlist() {}
         fn seat_at_table() {}
     }
 
@@ -29,12 +30,15 @@ mod back_of_house {
     }
 }
 
-pub fn eat_at_restaurant() {
-    // Ścieżka całkowita (absolutna, ang. absolute path)
-    crate::front_of_house::hosting::add_to_waitlist();
+// Extended example thus mentioned in the book
+mod customer_experience {
+    pub fn eat_at_restaurant() {
+        // Ścieżka całkowita (absolutna, ang. absolute path)
+        crate::front_of_house::hosting::add_to_waitlist();
 
-    // Ścieżka pokrewna (ang. relative path)
-    front_of_house::hosting::add_to_waitlist();
+        // Ścieżka pokrewna (ang. relative path)
+        front_of_house::hosting::add_to_waitlist();
+    }
 }
 
 #[cfg(test)]
