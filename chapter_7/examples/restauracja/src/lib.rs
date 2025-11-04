@@ -18,21 +18,30 @@ mod front_of_house {
     }
 }
 
+fn dostarczać_zamówienie() {}
+
 // added as example to fullfill `mod back_of_house`
 #[allow(dead_code)]
-mod back_of_house {
-    mod cooking {
-        fn receive_orders() {}
-        fn prepearing_stuff() {}
-        fn cooking() {}
-        fn washing_dishes() {}
+mod zaplecze {
+    pub struct Breakfast {
+        pub zapiekanka: String,
+        owoce_porokowe: String,
     }
 
-    mod managing {
-        fn sending_payments() {}
-        fn calclulating_costs() {}
-        fn employing() {}
+    impl Breakfast {
+        pub fn summer(zapiekanka: &str) -> Breakfast {
+            Breakfast {
+                zapiekanka: String::from(zapiekanka),
+                owoce_porokowe: String::from("brzoskwinie"),
+            }
+        }
     }
+
+    fn popraw_nieprawidłową_kolejność() {
+        zamówienie_kuchni();
+        super::dostarczać_zamówienie(); // Use a function for the parrent module (crate)
+    }
+    fn zamówienie_kuchni() {}
 }
 
 // Extended example thus mentioned in the book
