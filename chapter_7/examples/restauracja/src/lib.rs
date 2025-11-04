@@ -23,14 +23,14 @@ fn dostarczać_zamówienie() {}
 // added as example to fullfill `mod back_of_house`
 #[allow(dead_code)]
 mod zaplecze {
-    pub struct Breakfast {
+    pub struct Śniadanie {
         pub zapiekanka: String,
         owoce_porokowe: String,
     }
 
-    impl Breakfast {
-        pub fn summer(zapiekanka: &str) -> Breakfast {
-            Breakfast {
+    impl Śniadanie {
+        pub fn lato(zapiekanka: &str) -> Śniadanie {
+            Śniadanie {
                 zapiekanka: String::from(zapiekanka),
                 owoce_porokowe: String::from("brzoskwinie"),
             }
@@ -42,6 +42,16 @@ mod zaplecze {
         super::dostarczać_zamówienie(); // Use a function for the parrent module (crate)
     }
     fn zamówienie_kuchni() {}
+}
+
+pub fn jadanie_w_gospodzie() {
+    // Zamawianie śniadania z ryżową zapiekanką
+    let mut posiłek = zaplecze::Śniadanie::lato("Żytnią");
+    // Zmieniamy zdanie na temat rodzaju pieczywa
+    posiłek.zapiekanka = String::from("Pszenica");
+    println!("Poproszę {} zapiekankę", posiłek.zapiekanka);
+
+    //posiłek.zapiekanka = String::from("jagody");
 }
 
 // Extended example thus mentioned in the book
