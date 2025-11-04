@@ -1,7 +1,13 @@
 // answers of the quis (https://rust-book.cs.brown.edu/ch07-03-paths-for-referring-to-an-item-in-the-module-tree.html)
+// FIRST TEST:
 // 1. crate;
-// 2. This program does not compile.
+// 2. Do NOT compile.
 // 3. he output of this program will be: b
+// SECOND TEST:
+// 1. c2;
+// 2. Do NOT compile.
+
+#![allow(unused_variables)]
 
 #[allow(dead_code)]
 mod front_of_house {
@@ -23,6 +29,10 @@ fn dostarczać_zamówienie() {}
 // added as example to fullfill `mod back_of_house`
 #[allow(dead_code)]
 mod zaplecze {
+    pub enum Przystawka {
+        Polewka,
+        Sałatka,
+    }
     pub struct Śniadanie {
         pub zapiekanka: String,
         owoce_porokowe: String,
@@ -51,7 +61,11 @@ pub fn jadanie_w_gospodzie() {
     posiłek.zapiekanka = String::from("Pszenica");
     println!("Poproszę {} zapiekankę", posiłek.zapiekanka);
 
-    //posiłek.zapiekanka = String::from("jagody");
+    // We can't assign `owoce_porokowe` to `posiłek` as `owoce_porokowe` is a private field.
+    // posiłek.owoce_porokowe = String::from("jagody");
+
+    let zamówienie1 = zaplecze::Przystawka::Polewka;
+    let zamówienie2 = zaplecze::Przystawka::Sałatka;
 }
 
 // Extended example thus mentioned in the book
@@ -72,7 +86,6 @@ mod tests {
 
     #[test]
     fn it_works() {
-        // let result = add(2, 2);
-        // assert_eq!(result, 4);
+        todo!()
     }
 }
