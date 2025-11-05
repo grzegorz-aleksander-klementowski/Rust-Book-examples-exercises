@@ -10,7 +10,7 @@
 #![allow(unused_variables)]
 
 #[allow(dead_code)]
-mod front_of_house {
+mod izba_gościnna {
     //having only `hosting` module public, the contents of hosting are still private; making the module public doesn’t make its contents public
     pub mod hosting {
         pub fn add_to_waitlist() {}
@@ -54,29 +54,31 @@ mod zaplecze {
     fn zamówienie_kuchni() {}
 }
 
-pub fn jadanie_w_gospodzie() {
-    // Zamawianie śniadania z ryżową zapiekanką
-    let mut posiłek = zaplecze::Śniadanie::lato("Żytnią");
-    // Zmieniamy zdanie na temat rodzaju pieczywa
-    posiłek.zapiekanka = String::from("Pszenica");
-    println!("Poproszę {} zapiekankę", posiłek.zapiekanka);
-
-    // We can't assign `owoce_porokowe` to `posiłek` as `owoce_porokowe` is a private field.
-    // posiłek.owoce_porokowe = String::from("jagody");
-
-    let zamówienie1 = zaplecze::Przystawka::Polewka;
-    let zamówienie2 = zaplecze::Przystawka::Sałatka;
-}
-
 // Extended example thus mentioned in the book
 #[allow(dead_code)]
-mod customer_experience {
-    pub fn eat_at_restaurant() {
+mod doświadczenia_usługobiorcy {
+    pub fn jadanie_w_gospodzie() {
         // Ścieżka całkowita (absolutna, ang. absolute path)
-        crate::front_of_house::hosting::add_to_waitlist();
+        // crate::izba_gościnna::hosting::add_to_waitlist();
+
+        //using path by `use` keyword;
+        use crate::izba_gościnna::hosting;
+        hosting::add_to_waitlist();
 
         // Ścieżka pokrewna (ang. relative path)
         // Front_of_house::hosting::add_to_waitlist(); // if not in `customer_experience` module
+
+        // Zamawianie śniadania z ryżową zapiekanką
+        let mut posiłek = super::zaplecze::Śniadanie::lato("Żytnią");
+        // Zmieniamy zdanie na temat rodzaju pieczywa
+        posiłek.zapiekanka = String::from("Pszenica");
+        println!("Poproszę {} zapiekankę", posiłek.zapiekanka);
+
+        // We can't assign `owoce_porokowe` to `posiłek` as `owoce_porokowe` is a private field.
+        // posiłek.owoce_porokowe = String::from("jagody");
+
+        let zamówienie1 = super::zaplecze::Przystawka::Polewka;
+        let zamówienie2 = super::zaplecze::Przystawka::Sałatka;
     }
 }
 
