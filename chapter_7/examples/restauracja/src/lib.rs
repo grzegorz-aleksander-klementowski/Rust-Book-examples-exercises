@@ -9,6 +9,9 @@
 
 #![allow(unused_variables)]
 
+// Defined API
+pub use crate::izba_gościnna::hosting;
+
 #[allow(dead_code)]
 mod izba_gościnna {
     //having only `hosting` module public, the contents of hosting are still private; making the module public doesn’t make its contents public
