@@ -10,10 +10,10 @@
 #![allow(unused_variables)]
 
 // Defined API
-pub use crate::izba_gościnna::hosting;
+pub use crate::izba_goscinna::hosting;
 
-#[path = "izba_gościnna.rs"]
-mod izba_gościnna;
+// #[path = "izba_gościnna.rs"]
+mod izba_goscinna;
 
 fn dostarczać_zamówienie() {}
 
@@ -53,7 +53,7 @@ mod doświadczenia_usługobiorcy {
         // crate::izba_gościnna::hosting::add_to_waitlist();
 
         //using path by `use` keyword;
-        use crate::izba_gościnna::hosting;
+        use crate::izba_goscinna::hosting;
         hosting::add_to_waitlist();
 
         // Ścieżka pokrewna (ang. relative path)
