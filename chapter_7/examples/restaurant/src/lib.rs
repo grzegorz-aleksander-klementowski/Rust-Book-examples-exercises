@@ -12,20 +12,8 @@
 // Defined API
 pub use crate::izba_gościnna::hosting;
 
-#[allow(dead_code)]
-mod izba_gościnna {
-    //having only `hosting` module public, the contents of hosting are still private; making the module public doesn’t make its contents public
-    pub mod hosting {
-        pub fn add_to_waitlist() {}
-        fn seat_at_table() {}
-    }
-
-    mod serving {
-        fn take_order() {}
-        fn serve_order() {}
-        fn take_payments() {}
-    }
-}
+#[path = "izba_gościnna.rs"]
+mod izba_gościnna;
 
 fn dostarczać_zamówienie() {}
 
@@ -69,7 +57,7 @@ mod doświadczenia_usługobiorcy {
         hosting::add_to_waitlist();
 
         // Ścieżka pokrewna (ang. relative path)
-        // Front_of_house::hosting::add_to_waitlist(); // if not in `customer_experience` module
+        // izba_gościnna::hosting::add_to_waitlist(); // if not in `customer_experience` module
 
         // Zamawianie śniadania z ryżową zapiekanką
         let mut posiłek = super::zaplecze::Śniadanie::lato("Żytnią");
