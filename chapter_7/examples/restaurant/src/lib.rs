@@ -72,13 +72,3 @@ mod doświadczenia_usługobiorcy {
         let zamówienie2 = super::zaplecze::Przystawka::Sałatka;
     }
 }
-
-#[cfg(test)]
-mod tests {
-    // use super::*;
-
-    #[test]
-    fn it_works() {
-        todo!()
-    }
-}
