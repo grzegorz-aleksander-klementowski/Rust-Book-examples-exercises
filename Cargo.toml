@@ -37,6 +37,7 @@ members = [
   "./chapter_6/examples/ex6_magical_hat_board_game",
   "./chapter_7/examples/backyard",
   "./chapter_7/examples/my-project",
-  "./chapter_7/examples/restaurant"
+  "./chapter_7/examples/restaurant",
+  "./chapter_8/examples/vectors"
 ]
 resolver = "2"
