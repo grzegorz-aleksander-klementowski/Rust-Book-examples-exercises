@@ -48,7 +48,8 @@ fn main() {
 // The correct version of suplicate the vector in place
 fn dup_in_place(v: &mut Vec<u8>) {
     for i in 0..v.len() {
-        let n_ref = v[i];
-        v.push(n_ref);
+        // i → 0, 1, 2, …
+        // 0..v → Range<usize>
+        v.push(v[i]);
     }
 }
