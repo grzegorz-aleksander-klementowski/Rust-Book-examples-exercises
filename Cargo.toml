@@ -39,5 +39,5 @@ members = [
   "./chapter_7/examples/my-project",
   "./chapter_7/examples/restaurant",
   "./chapter_8/examples/vectors"
-, "chapter_8/examples/strings"]
+, "chapter_8/examples/strings", "chapter_8/examples/hashmaps"]
 resolver = "2"
