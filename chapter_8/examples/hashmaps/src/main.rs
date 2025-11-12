@@ -52,7 +52,6 @@ fn main() {
         .entry(String::from("Stella Lubomierz"))
         .or_insert(100);
     println!("Dodawanie „Orzeł Wojcieszów”, który jeszcze nie istnieje.");
-    //let dru_orzel = String::from("Orzeł Wojcieszów");
     wyniki
         .entry(String::from("Orzeł Wojcieszów"))
         .or_insert(100);
