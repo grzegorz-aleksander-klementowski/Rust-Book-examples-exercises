@@ -39,5 +39,5 @@ members = [
   "./chapter_7/examples/my-project",
   "./chapter_7/examples/restaurant",
   "./chapter_8/examples/vectors"
-, "chapter_8/examples/strings", "chapter_8/examples/hashmaps", "chapter_8/exercises/first-task-vector-return-media", "chapter_8/exercises/second-task-latin-pig"]
+, "chapter_8/examples/strings", "chapter_8/examples/hashmaps", "chapter_8/exercises/first-task-vector-return-media", "chapter_8/exercises/second-task-latin-pig", "chapter_8/exercises/third-task-a-company-api"]
 resolver = "2"
