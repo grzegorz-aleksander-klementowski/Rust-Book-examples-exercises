@@ -29,8 +29,8 @@ fn all_people_in_the_company_by_department_sorted_alphabetically(
 }
 
 enum CommandHandler {
-    AddUserToDep,
-    ListPeopleInDep,
+    AddUserToDep(String, String),
+    ListPeopleInDep(String),
     ListPeopleInComByDep,
     IncorrectCommand,
 }
@@ -111,6 +111,30 @@ impl Command {
             }
         }
         cmd
+    }
+
+    fn command_handler(&self) -> CommandHandler {
+        match self {
+            Self {
+                action: Some(Action::Add),
+                object: Some(Object::User(user)),
+                operator: Some(Operator::To),
+                destination: Some(Destination::Department(department)),
+            } => CommandHandler::AddUserToDep(*user, *department),
+            Self {
+                action: Some(Action::List),
+                object: Some(Object::People),
+                operator: Some(Operator::From),
+                destination: Some(Destination::Department(department)),
+            } => CommandHandler::ListPeopleInDep(*department),
+            Self {
+                action: Some(Action::List),
+                object: Some(Object::People),
+                operator: Some(Operator::From),
+                destination: Some(Destination::Company),
+            } => CommandHandler::ListPeopleInComByDep,
+            _ => CommandHandler::IncorrectCommand,
+        }
     }
 }
 
