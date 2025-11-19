@@ -40,7 +40,7 @@ enum Action {
     List,
 }
 enum Object {
-    User,
+    User(String),
     People,
 }
 enum Operator {
@@ -54,18 +54,57 @@ enum Destination {
 
 struct Command {
     action: Option<Action>,
-    object: Option<Object>,
+    object: Object,
     operator: Option<Operator>,
-    destination: Option<Destination>,
+    destination: Destination,
 }
 
+// Make possibili of creating custom extendable commands.
+// For example: "Add Procowój to Sales" will add the user to „Sales” departament, while
+// "List people from Sales" will list people from departament „Sales” but
+// "List people from Company" will list people from all of the departaments
+// Every needed keywors is typed while the rest return „None” exept the places when it's taing the
+// string like „user”, „departament”.
 impl Command {
     fn parse_command(input: &str) -> Self {
-        let mut inserted_command: [&str; 3] = [""; 3];
+        // let mut inserted_command: [&str; 3] = [""; 3];
+        let mut cmd = Command::default();
+
         for (index, word) in input.split_whitespace().enumerate() {
-            inserted_command[index] = word;
-            Self.action = match (index, word) {
-                (1, "Add") => Some(Action::Add),
+            // inserted_command[index] = word;
+
+            match (index, word) {
+                (0, "Add") => {
+                    cmd.action = Some(Action::Add);
+                }
+                (0, "List") => {
+                    cmd.action = Some(Action::List);
+                }
+                (0, _) => {
+                    cmd.action = None;
+                }
+                (1, "people") => {
+                    cmd.object = Object::People;
+                }
+                (1, _) => {
+                    cmd.object = Object::User(word.to_string());
+                }
+                (2, "to") => {
+                    cmd.operator = Some(Operator::To);
+                }
+                (2, "from") => {
+                    cmd.operator = Some(Operator::From);
+                }
+                (2, _) => {
+                    cmd.operator = None;
+                }
+                (3, "Company") => {
+                    cmd.destination = Destination::Company;
+                }
+                (3, _) => {
+                    cmd.destination = Destination::Department(word.to_string());
+                }
+                (_, _) => return Command::default(),
             }
         }
         todo!()
