@@ -5,6 +5,7 @@
 // or all people in the company by department, sorted alphabetically.
 
 use std::collections::HashMap;
+use std::io;
 
 fn add_a_user_to_a_departament(
     user: &str,
@@ -34,18 +35,69 @@ enum CommandHandler {
     IncorrectCommand,
 }
 
-impl CommandHandler {}
+enum Action {
+    Add,
+    List,
+}
+enum Object {
+    User,
+    People,
+}
+enum Operator {
+    To,
+    From,
+}
+enum Destination {
+    Department(String),
+    Company,
+}
 
-fn parse_command(input: &str) -> CommandHandler {
-    todo!()
+struct Command {
+    action: Option<Action>,
+    object: Option<Object>,
+    operator: Option<Operator>,
+    destination: Option<Destination>,
+}
+
+impl Command {
+    fn parse_command(input: &str) -> Self {
+        let mut inserted_command: [&str; 3] = [""; 3];
+        for (index, word) in input.split_whitespace().enumerate() {
+            inserted_command[index] = word;
+            Self.action = match (index, word) {
+                (1, "Add") => Some(Action::Add),
+            }
+        }
+        todo!()
+    }
+}
+
+impl Default for Command {
+    fn default() -> Self {
+        Self {
+            action: None,
+            object: None,
+            operator: None,
+            destination: None,
+        }
+    }
 }
 
 fn read_input() -> String {
-    todo!()
+    loop {
+        let mut user_input = String::new();
+        let result = io::stdin().read_line(&mut user_input);
+        match result {
+            Ok(_) => return user_input,
+            Err(_) => continue,
+        }
+    }
 }
 
 fn main() {
     let company: HashMap<&str, Vec<&str>> = HashMap::new();
+    let input = read_input();
+    parse_command(&input);
 }
 
 #[cfg(test)]
