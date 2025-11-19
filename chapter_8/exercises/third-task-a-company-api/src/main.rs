@@ -54,9 +54,9 @@ enum Destination {
 
 struct Command {
     action: Option<Action>,
-    object: Object,
+    object: Option<Object>,
     operator: Option<Operator>,
-    destination: Destination,
+    destination: Option<Destination>,
 }
 
 // Make possibili of creating custom extendable commands.
@@ -84,10 +84,13 @@ impl Command {
                     cmd.action = None;
                 }
                 (1, "people") => {
-                    cmd.object = Object::People;
+                    cmd.object = Some(Object::People);
+                }
+                (1, "") => {
+                    cmd.object = None;
                 }
                 (1, _) => {
-                    cmd.object = Object::User(word.to_string());
+                    cmd.object = Some(Object::User(word.to_string()));
                 }
                 (2, "to") => {
                     cmd.operator = Some(Operator::To);
@@ -99,10 +102,13 @@ impl Command {
                     cmd.operator = None;
                 }
                 (3, "Company") => {
-                    cmd.destination = Destination::Company;
+                    cmd.destination = Some(Destination::Company);
+                }
+                (3, "") => {
+                    cmd.destination = None;
                 }
                 (3, _) => {
-                    cmd.destination = Destination::Department(word.to_string());
+                    cmd.destination = Some(Destination::Department(word.to_string()));
                 }
                 (_, _) => return Command::default(),
             }
@@ -136,7 +142,7 @@ fn read_input() -> String {
 fn main() {
     let company: HashMap<&str, Vec<&str>> = HashMap::new();
     let input = read_input();
-    parse_command(&input);
+    let command = Command::parse_command(&input);
 }
 
 #[cfg(test)]
@@ -208,7 +214,7 @@ mod test {
     fn test_command_passer_for_add_user_command() {
         //Test if the correct command works
         let user_command = "Add Mądromira to Sales";
-        let result = parse_command(user_command);
+        let result = Command::parse_command(user_command);
 
         assert!(matches!(result, CommandHandler::AddUserToDep));
         let bad_cases = [
