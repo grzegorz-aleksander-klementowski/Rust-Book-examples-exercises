@@ -67,12 +67,9 @@ struct Command {
 // string like „user”, „departament”.
 impl Command {
     fn parse_command(input: &str) -> Self {
-        // let mut inserted_command: [&str; 3] = [""; 3];
         let mut cmd = Command::default();
 
         for (index, word) in input.split_whitespace().enumerate() {
-            // inserted_command[index] = word;
-
             match (index, word) {
                 (0, "Add") => {
                     cmd.action = Some(Action::Add);
@@ -113,7 +110,7 @@ impl Command {
                 (_, _) => return Command::default(),
             }
         }
-        todo!()
+        cmd
     }
 }
 
