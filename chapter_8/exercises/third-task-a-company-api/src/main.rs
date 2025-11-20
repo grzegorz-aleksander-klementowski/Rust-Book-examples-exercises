@@ -5,34 +5,25 @@
 // or all people in the company by department, sorted alphabetically.
 
 use std::collections::HashMap;
+use std::fmt::{Display, Write};
 use std::io;
 
 fn add_a_user_to_a_departament(
     user: &str,
     department: &str,
     company: &mut HashMap<&str, Vec<&str>>,
-) {
+) -> CommandResult {
     todo!()
 }
 
-fn list_of_all_people_in_a_department_sorted_alphabetically(
-    company: &HashMap<&str, Vec<&str>>,
-    department: &str,
-) -> String {
+// list of all people in a department sorted alphabetically
+fn list_ppl_in_a_department(company: &HashMap<&str, Vec<&str>>, department: &str) -> CommandResult {
     todo!()
 }
 
-fn all_people_in_the_company_by_department_sorted_alphabetically(
-    company: &HashMap<&str, Vec<&str>>,
-) -> String {
+// all people in the company by department sorted alphabetically
+fn list_people_in_the_company(company: &HashMap<&str, Vec<&str>>) -> CommandResult {
     todo!()
-}
-
-enum CommandHandler {
-    AddUserToDep(String, String),
-    ListPeopleInDep(String),
-    ListPeopleInComByDep,
-    IncorrectCommand,
 }
 
 enum Action {
@@ -113,27 +104,30 @@ impl Command {
         cmd
     }
 
-    fn command_handler(&self) -> CommandHandler {
+    // It could reutrn a needed action, however, it return CommandHandler because of ability of testing
+    fn command_handler(&self, company: &mut HashMap<&str, Vec<&str>>) -> CommandResult {
         match self {
             Self {
                 action: Some(Action::Add),
                 object: Some(Object::User(user)),
                 operator: Some(Operator::To),
                 destination: Some(Destination::Department(department)),
-            } => CommandHandler::AddUserToDep(*user, *department),
+            } => add_a_user_to_a_departament(user, department, company),
             Self {
                 action: Some(Action::List),
                 object: Some(Object::People),
                 operator: Some(Operator::From),
                 destination: Some(Destination::Department(department)),
-            } => CommandHandler::ListPeopleInDep(*department),
+            } => list_ppl_in_a_department(company, department),
             Self {
                 action: Some(Action::List),
                 object: Some(Object::People),
                 operator: Some(Operator::From),
                 destination: Some(Destination::Company),
-            } => CommandHandler::ListPeopleInComByDep,
-            _ => CommandHandler::IncorrectCommand,
+            } => list_people_in_the_company(company),
+            _ => CommandResult(Err(
+                "Incorrect command. Try again. \nHelp: use \"Add `user` To `department_name`\" OR List people from `department_name`/`company`.".to_string(),
+            )),
         }
     }
 }
@@ -149,6 +143,21 @@ impl Default for Command {
     }
 }
 
+struct CommandResult(Result<String, String>);
+
+impl Display for CommandResult {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            CommandResult(Ok(s)) => {
+                write!(f, "Wynik: {s}")
+            }
+            CommandResult(Err(e)) => {
+                write!(f, "Error: {e}")
+            }
+        }
+    }
+}
+
 fn read_input() -> String {
     loop {
         let mut user_input = String::new();
@@ -160,10 +169,14 @@ fn read_input() -> String {
     }
 }
 
-fn main() {
-    let company: HashMap<&str, Vec<&str>> = HashMap::new();
+fn run_command(company: &mut HashMap<&str, Vec<&str>>) {
     let input = read_input();
     let command = Command::parse_command(&input);
+}
+
+fn main() {
+    let mut company: HashMap<&str, Vec<&str>> = HashMap::new();
+    run_command(&mut company);
 }
 
 #[cfg(test)]
