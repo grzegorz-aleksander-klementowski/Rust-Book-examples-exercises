@@ -26,23 +26,28 @@ fn list_people_in_the_company(company: &HashMap<&str, Vec<&str>>) -> CommandResu
     todo!()
 }
 
+#[derive(Debug, PartialEq)]
 enum Action {
     Add,
     List,
 }
+#[derive(Debug, PartialEq)]
 enum Object {
     User(String),
     People,
 }
+#[derive(Debug, PartialEq)]
 enum Operator {
     To,
     From,
 }
+#[derive(Debug, PartialEq)]
 enum Destination {
     Department(String),
     Company,
 }
 
+#[derive(Debug, PartialEq)]
 struct Command {
     action: Option<Action>,
     object: Option<Object>,
@@ -62,10 +67,10 @@ impl Command {
 
         for (index, word) in input.split_whitespace().enumerate() {
             match (index, word) {
-                (0, "Add") => {
+                (0, "add") => {
                     cmd.action = Some(Action::Add);
                 }
-                (0, "List") => {
+                (0, "list") => {
                     cmd.action = Some(Action::List);
                 }
                 (0, _) => {
@@ -89,7 +94,7 @@ impl Command {
                 (2, _) => {
                     cmd.operator = None;
                 }
-                (3, "Company") => {
+                (3, "company") => {
                     cmd.destination = Some(Destination::Company);
                 }
                 (3, "") => {
@@ -143,8 +148,11 @@ impl Default for Command {
     }
 }
 
+// Struct for better handling the results of the commands, making it also more testable
+#[derive(Debug, PartialEq, Eq)]
 struct CommandResult(Result<String, String>);
 
+// Printing the finall result of the commands.
 impl Display for CommandResult {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
@@ -182,6 +190,8 @@ fn main() {
 #[cfg(test)]
 mod test {
 
+    use std::result;
+
     use super::*;
 
     #[test]
@@ -198,32 +208,18 @@ mod test {
             add_a_user_to_a_departament(user, "Engineering", &mut company);
         }
 
+        let result = add_a_user_to_a_departament("Mądromira", "Engineering", &mut company);
+        assert_eq!(
+            result,
+            CommandResult(Ok("Added Mądromira to Engineering department.".to_string()))
+        );
+
         let result = &company.get("Sales");
         assert_eq!(result, &Some(&vec!["Pracomił", "Dobromił", "Władysław"]));
     }
 
     #[test]
-    fn test_list_of_all_people_in_a_department_sorted_alphabetically() {
-        let mut company: HashMap<&str, Vec<&str>> = HashMap::new();
-        let departament_to_test = "Sales";
-        let other_departament_to_test = "Engineering";
-
-        let tested_users_to_be_added = ["Strzeżymir", "Dobromił", "Bolesław"];
-        for user in tested_users_to_be_added {
-            add_a_user_to_a_departament(user, departament_to_test, &mut company);
-        }
-
-        // add a user to a different departament
-        add_a_user_to_a_departament("Mściwój", other_departament_to_test, &mut company);
-
-        let result =
-            list_of_all_people_in_a_department_sorted_alphabetically(&company, departament_to_test);
-
-        assert_eq!("Bolesław, Dobromił, Strzeżymir", result)
-    }
-
-    #[test]
-    fn test_all_people_in_the_company_by_department_sorted_alphabetically() {
+    fn test_list_people_in_the_company() {
         let mut company: HashMap<&str, Vec<&str>> = HashMap::new();
         let users_to_be_added_to_sales = ["Strzeżymir", "Dobromił", "Władysław"];
         let users_to_be_added_to_engineering = ["Bolesław", "Mściwój", "Wojtek"];
@@ -235,22 +231,52 @@ mod test {
             add_a_user_to_a_departament(user, "Engineering", &mut company);
         }
 
-        let result = all_people_in_the_company_by_department_sorted_alphabetically(&company);
+        let result = list_people_in_the_company(&company);
 
         // The departament should be printed also alphabetically.
         assert_eq!(
-            "Engineering: Bolesław, Mściwój, Wojtek\nSales: Dobromił, Strzeżymir, Władysław",
+            CommandResult(Ok(
+                "Engineering: Bolesław, Mściwój, Wojtek\nSales: Dobromił, Strzeżymir, Władysław"
+                    .to_string()
+            )),
             result
         )
     }
 
     #[test]
-    fn test_command_passer_for_add_user_command() {
-        //Test if the correct command works
-        let user_command = "Add Mądromira to Sales";
-        let result = Command::parse_command(user_command);
+    fn test_parsing_command() {
+        // Test if the correct command works
+        let corr_add_user_cmd = Command {
+            action: Some(Action::Add),
+            object: Some(Object::User(String::from("Mądromira"))),
+            operator: Some(Operator::To),
+            destination: Some(Destination::Department("Sales".to_string())),
+        };
+        let user_input = "add Mądromira to Sales";
+        let result = Command::parse_command(user_input);
+        assert_eq!(result, corr_add_user_cmd);
 
-        assert!(matches!(result, CommandHandler::AddUserToDep));
+        let corr_list_ppl_dpt = Command {
+            action: Some(Action::List),
+            object: Some(Object::People),
+            operator: Some(Operator::From),
+            destination: Some(Destination::Department("Sales".to_string())),
+        };
+        let user_input = "list people from Sales";
+        let result = Command::parse_command(user_input);
+        assert!(matches!(result, corr_list_ppl_dpt));
+
+        let corr_list_ppl_cmp = Command {
+            action: Some(Action::List),
+            object: Some(Object::People),
+            operator: Some(Operator::From),
+            destination: Some(Destination::Company),
+        };
+        let user_input = "list people from company";
+        let result = Command::parse_command(user_input);
+        assert!(matches!(result, corr_list_ppl_cmp));
+
+        // Test if the command does't work
         let bad_cases = [
             // Test if the command with incorrect the command ending doesn't works
             "Adder Mściwój to Sales",
@@ -264,28 +290,9 @@ mod test {
 
         for case in bad_cases {
             let user_command = case;
-            let result = parse_command(user_command);
-            assert!(matches!(result, CommandHandler::IncorrectCommand));
+            let result = Command::parse_command(user_command);
+            let expected = Command::default();
+            assert!(matches!(result, expected));
         }
-    }
-
-    #[test]
-    fn test_command_passer_for_add_list_users_command() {
-        let good_cases_dep = ["List people from Sales", "List people from Engineering"];
-
-        for case in good_cases_dep {
-            let user_command = case;
-            let result = parse_command(user_command);
-            assert!(matches!(result, CommandHandler::ListPeopleInDep));
-        }
-
-        let user_command = "List people from Sales";
-        let result = parse_command(user_command);
-        assert!(matches!(result, CommandHandler::ListPeopleInDep));
-
-        // A bad case
-        let user_command = "List triple from Sales";
-        let result = parse_command(user_command);
-        assert!(matches!(result, CommandHandler::IncorrectCommand));
     }
 }
