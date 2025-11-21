@@ -17,8 +17,10 @@ fn add_a_user_to_a_departament(
     department: String,
     company: &mut HashMap<String, Vec<String>>,
 ) -> CommandResult {
+    let user_to_print = user.clone();
+    let department_to_print = department.clone();
     company.entry(department).or_default().push(user);
-    let res_message = String::from("Added {user} to {department}");
+    let res_message = format!("Added {user_to_print} to {department_to_print}");
     CommandResult(Ok(res_message))
 }
 
@@ -31,10 +33,6 @@ fn list_ppl_in_a_department(
     match department_people {
         Some(people) => {
             let mut s_list = people.join("\n");
-            for user in people {
-                s_list.push_str(user);
-                s_list.push('\n');
-            }
             CommandResult(Ok(s_list))
         }
         None => CommandResult(Err("There is no {department} department.".to_string())),

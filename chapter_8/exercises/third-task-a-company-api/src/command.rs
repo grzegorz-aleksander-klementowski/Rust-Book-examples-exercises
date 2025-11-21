@@ -143,6 +143,8 @@ impl Display for CommandResult {
 #[cfg(test)]
 mod test {
 
+    use std::alloc::handle_alloc_error;
+
     use super::*;
 
     #[test]
@@ -190,10 +192,12 @@ mod test {
             String::from("Add Bolesław to Lublin"),
         ];
 
+        let mut company: HashMap<String, Vec<String>> = HashMap::new();
         for case in bad_cases {
-            let user_command = case;
-            let result = Command::parse_command(user_command);
-            let expected = Command::default();
+            let command = Command::parse_command(case);
+            let result = command.command_handler(&mut company);
+            let expected = CommandResult(Err(
+                "Incorrect command. Try again. \nHelp: use \"add `user` to `department_name`\" OR list people from `department_name`/`company`.".to_string()));
             assert_eq!(result, expected);
         }
     }
