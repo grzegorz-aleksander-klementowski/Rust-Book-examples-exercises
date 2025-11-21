@@ -131,7 +131,7 @@ impl Display for CommandResult {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
             CommandResult(Ok(s)) => {
-                write!(f, "Wynik: {s}")
+                write!(f, "{s}")
             }
             CommandResult(Err(e)) => {
                 write!(f, "Error: {e}")

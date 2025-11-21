@@ -41,14 +41,19 @@ fn read_input() -> String {
     }
 }
 
-fn run_command(company: &mut HashMap<&str, Vec<&str>>) {
-    let input = read_input();
-    let command = Command::parse_command(&input);
-}
-
 fn main() {
     let mut company: HashMap<&str, Vec<&str>> = HashMap::new();
-    run_command(&mut company);
+    let modifier_company = &mut company;
+
+    loop {
+        let input = read_input();
+        let command = Command::parse_command(&input);
+        let command_result = command.command_handler(modifier_company);
+        match command_result {
+            CommandResult(Ok(result)) => println!("{}", CommandResult(Ok(result))),
+            CommandResult(Err(error)) => println!("{}", CommandResult(Err(error))),
+        }
+    }
 }
 
 #[cfg(test)]
