@@ -20,7 +20,7 @@ fn add_a_user_to_a_departament(
     let user_to_print = user.clone();
     let department_to_print = department.clone();
     company.entry(department).or_default().push(user);
-    let res_message = format!("Added {user_to_print} to {department_to_print}");
+    let res_message = format!("Added {user_to_print} to {department_to_print} department.");
     CommandResult(Ok(res_message))
 }
 
@@ -32,7 +32,7 @@ fn list_ppl_in_a_department(
     let department_people = company.get(&department);
     match department_people {
         Some(people) => {
-            let mut s_list = people.join("\n");
+            let s_list = people.join("\n");
             CommandResult(Ok(s_list))
         }
         None => CommandResult(Err("There is no {department} department.".to_string())),
@@ -48,6 +48,7 @@ fn list_people_in_the_company(company: &HashMap<String, Vec<String>>) -> Command
 
         list.push_str(&dep);
         list.push_str(&ppl);
+        list.push('\n');
     }
     CommandResult(Ok(list))
 }
@@ -64,6 +65,10 @@ fn read_input() -> String {
 }
 
 fn main() {
+    println!(
+        "App using commands to communicate. \nUsage: \nadd `user` to `departament`\nlist people from `departament`\nlist people from `company`\n\n"
+    );
+
     let mut company: HashMap<String, Vec<String>> = HashMap::new();
     let modifier_company = &mut company;
 
@@ -142,11 +147,11 @@ mod test {
 
         // The departament should be printed also alphabetically.
         assert_eq!(
+            result,
             CommandResult(Ok(
-                "Engineering: Bolesław, Mściwój, Wojtek\nSales: Dobromił, Strzeżymir, Władysław"
+                "Engineering: Bolesław, Mściwój, Wojtek\nSales: Dobromił, Strzeżymir, Władysław\n"
                     .to_string()
-            )),
-            result
+            ))
         )
     }
 }
