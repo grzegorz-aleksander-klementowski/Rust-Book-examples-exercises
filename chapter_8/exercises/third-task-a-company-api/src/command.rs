@@ -36,7 +36,7 @@ pub struct Command {
 // Every needed keywors is typed while the rest return „None” exept the places when it's taing the
 // string like „user”, „departament”.
 impl Command {
-    pub fn parse_command(input: &str) -> Self {
+    pub fn parse_command(input: String) -> Self {
         let mut cmd = Command::default();
 
         for (index, word) in input.split_whitespace().enumerate() {
@@ -84,20 +84,20 @@ impl Command {
     }
 
     // It could reutrn a needed action, however, it return CommandHandler because of ability of testing
-    pub fn command_handler(&self, company: &mut HashMap<&str, Vec<&str>>) -> CommandResult {
+    pub fn command_handler(&self, company: &mut HashMap<String, Vec<String>>) -> CommandResult {
         match self {
             Self {
                 action: Some(Action::Add),
                 object: Some(Object::User(user)),
                 operator: Some(Operator::To),
                 destination: Some(Destination::Department(department)),
-            } => add_a_user_to_a_departament(user, department, company),
+            } => add_a_user_to_a_departament(user.clone(), department.clone(), company),
             Self {
                 action: Some(Action::List),
                 object: Some(Object::People),
                 operator: Some(Operator::From),
                 destination: Some(Destination::Department(department)),
-            } => list_ppl_in_a_department(company, department),
+            } => list_ppl_in_a_department(company, department.clone()),
             Self {
                 action: Some(Action::List),
                 object: Some(Object::People),
@@ -154,7 +154,7 @@ mod test {
             operator: Some(Operator::To),
             destination: Some(Destination::Department("Sales".to_string())),
         };
-        let user_input = "add Mądromira to Sales";
+        let user_input = String::from("add Mądromira to Sales");
         let result = Command::parse_command(user_input);
         assert_eq!(result, corr_add_user_cmd);
 
@@ -164,7 +164,7 @@ mod test {
             operator: Some(Operator::From),
             destination: Some(Destination::Department("Sales".to_string())),
         };
-        let user_input = "list people from Sales";
+        let user_input = String::from("list people from Sales");
         let result = Command::parse_command(user_input);
         assert_eq!(result, corr_list_ppl_dpt);
 
@@ -174,20 +174,20 @@ mod test {
             operator: Some(Operator::From),
             destination: Some(Destination::Company),
         };
-        let user_input = "list people from company";
+        let user_input = String::from("list people from company");
         let result = Command::parse_command(user_input);
         assert_eq!(result, corr_list_ppl_cmp);
 
         // Test if the command does't work
         let bad_cases = [
             // Test if the command with incorrect the command ending doesn't works
-            "Adder Mściwój to Sales",
+            String::from("Adder Mściwój to Sales"),
             // Test if the command with incorrect command does't work
-            "Gdd Strzeżymir to Sales",
+            String::from("Gdd Strzeżymir to Sales"),
             // Test if mixed commadd doesn't works
-            "Sales Addes to Mściwój",
+            String::from("Sales Addes to Mściwój"),
             // Test if the departament name is incorrect it doesn't work
-            "Add Bolesław to Lublin",
+            String::from("Add Bolesław to Lublin"),
         ];
 
         for case in bad_cases {
@@ -200,7 +200,7 @@ mod test {
 
     #[test]
     fn test_wrong_handling_commands() {
-        let mut company: HashMap<&str, Vec<&str>> = HashMap::new();
+        let mut company: HashMap<String, Vec<String>> = HashMap::new();
 
         let incorr_list_usr = Command {
             action: Some(Action::List),
