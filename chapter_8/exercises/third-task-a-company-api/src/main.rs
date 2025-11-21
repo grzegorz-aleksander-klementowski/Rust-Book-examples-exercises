@@ -17,7 +17,7 @@ fn add_a_user_to_a_departament(
     department: String,
     company: &mut HashMap<String, Vec<String>>,
 ) -> CommandResult {
-    company.entry(department).or_insert(Vec::new()).push(user);
+    company.entry(department).or_default().push(user);
     let res_message = String::from("Added {user} to {department}");
     CommandResult(Ok(res_message))
 }
@@ -43,7 +43,15 @@ fn list_ppl_in_a_department(
 
 // all people in the company by department sorted alphabetically
 fn list_people_in_the_company(company: &HashMap<String, Vec<String>>) -> CommandResult {
-    todo!()
+    let mut list = String::new();
+    for (department, people) in company {
+        let dep = format!("{department}: ");
+        let ppl = people.join(", ");
+
+        list.push_str(&dep);
+        list.push_str(&ppl);
+    }
+    CommandResult(Ok(list))
 }
 
 fn read_input() -> String {
