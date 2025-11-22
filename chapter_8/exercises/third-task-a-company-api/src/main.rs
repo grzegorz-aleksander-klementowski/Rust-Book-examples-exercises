@@ -29,15 +29,18 @@ fn add_a_user_to_a_departament(
 // list of all people in a department sorted alphabetically
 fn list_ppl_in_a_department(
     company: &HashMap<String, Vec<String>>,
-    department: String,
+    department: &str,
 ) -> CommandResult {
-    let department_people = company.get(&department);
+    let department_people = company.get(department);
     match department_people {
         Some(people) => {
             let s_list = people.join("\n");
             CommandResult(Ok(s_list))
         }
-        None => CommandResult(Err("There is no {department} department.".to_string())),
+        None => {
+            let e = format!("There is no {department} department.");
+            CommandResult(Err(e))
+        }
     }
 }
 

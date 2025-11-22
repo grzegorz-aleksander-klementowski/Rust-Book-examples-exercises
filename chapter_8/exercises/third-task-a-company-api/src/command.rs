@@ -97,7 +97,7 @@ impl Command {
                 object: Some(Object::People),
                 operator: Some(Operator::From),
                 destination: Some(Destination::Department(department)),
-            } => list_ppl_in_a_department(company, department.clone()),
+            } => list_ppl_in_a_department(company, department),
             Self {
                 action: Some(Action::List),
                 object: Some(Object::People),
