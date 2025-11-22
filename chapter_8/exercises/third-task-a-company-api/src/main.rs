@@ -12,15 +12,17 @@ use std::collections::HashMap;
 use std::fmt::Display;
 use std::io;
 
+// Add a user to a chosen departament
 fn add_a_user_to_a_departament(
-    user: String,
-    department: String,
+    user: &str,
+    department: &str,
     company: &mut HashMap<String, Vec<String>>,
 ) -> CommandResult {
-    let user_to_print = user.clone();
-    let department_to_print = department.clone();
-    company.entry(department).or_default().push(user);
-    let res_message = format!("Added {user_to_print} to {department_to_print} department.");
+    company
+        .entry(department.to_string())
+        .or_default()
+        .push(user.to_string());
+    let res_message = format!("Added {user} to {department} department.");
     CommandResult(Ok(res_message))
 }
 
@@ -92,26 +94,17 @@ mod test {
     fn test_add_a_user_to_a_department() {
         let mut company: HashMap<String, Vec<String>> = HashMap::new();
 
-        let users_to_be_added_to_sales = [
-            "Pracomił".to_string(),
-            "Dobromił".to_string(),
-            "Władysław".to_string(),
-        ];
+        let users_to_be_added_to_sales = ["Pracomił", "Dobromił", "Władysław"];
         let users_to_be_added_to_engineering = ["Bolesław", "Mściwój", "Wojtek"];
 
         for user in users_to_be_added_to_sales {
-            add_a_user_to_a_departament(user, "Sales".to_string(), &mut company);
+            add_a_user_to_a_departament(user, "Sales", &mut company);
         }
         for user in users_to_be_added_to_engineering {
-            let user = String::from(user);
-            add_a_user_to_a_departament(user, "Engineering".to_string(), &mut company);
+            add_a_user_to_a_departament(user, "Engineering", &mut company);
         }
 
-        let result = add_a_user_to_a_departament(
-            "Mądromira".to_string(),
-            "Engineering".to_string(),
-            &mut company,
-        );
+        let result = add_a_user_to_a_departament("Mądromira", "Engineering", &mut company);
         assert_eq!(
             result,
             CommandResult(Ok("Added Mądromira to Engineering department.".to_string()))
@@ -135,12 +128,10 @@ mod test {
         let users_to_be_added_to_engineering = ["Bolesław", "Mściwój", "Wojtek"];
 
         for user in users_to_be_added_to_sales {
-            let user = String::from(user);
-            add_a_user_to_a_departament(user, "Sales".to_string(), &mut company);
+            add_a_user_to_a_departament(user, "Sales", &mut company);
         }
         for user in users_to_be_added_to_engineering {
-            let user = String::from(user);
-            add_a_user_to_a_departament(user, "Engineering".to_string(), &mut company);
+            add_a_user_to_a_departament(user, "Engineering", &mut company);
         }
 
         let result = list_people_in_the_company(&company);

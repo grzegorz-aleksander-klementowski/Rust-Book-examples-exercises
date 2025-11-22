@@ -21,7 +21,7 @@ pub enum Destination {
     Company,
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Default)]
 pub struct Command {
     action: Option<Action>,
     object: Option<Object>,
@@ -91,7 +91,7 @@ impl Command {
                 object: Some(Object::User(user)),
                 operator: Some(Operator::To),
                 destination: Some(Destination::Department(department)),
-            } => add_a_user_to_a_departament(user.clone(), department.clone(), company),
+            } => add_a_user_to_a_departament(user, department, company),
             Self {
                 action: Some(Action::List),
                 object: Some(Object::People),
@@ -107,17 +107,6 @@ impl Command {
             _ => CommandResult(Err(
                 "Incorrect command. Try again. \nHelp: use \"add `user` to `department_name`\" OR list people from `department_name`/`company`.".to_string(),
             )),
-        }
-    }
-}
-
-impl Default for Command {
-    fn default() -> Self {
-        Self {
-            action: None,
-            object: None,
-            operator: None,
-            destination: None,
         }
     }
 }
@@ -142,8 +131,6 @@ impl Display for CommandResult {
 
 #[cfg(test)]
 mod test {
-
-    use std::alloc::handle_alloc_error;
 
     use super::*;
 
