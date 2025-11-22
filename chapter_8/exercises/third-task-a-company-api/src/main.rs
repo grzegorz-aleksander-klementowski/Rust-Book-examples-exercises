@@ -47,13 +47,14 @@ fn list_ppl_in_a_department(
 // all people in the company by department sorted alphabetically
 fn list_people_in_the_company(company: &HashMap<String, Vec<String>>) -> CommandResult {
     let mut list = String::new();
-    for (department, people) in company {
-        let dep = format!("{department}: ");
-        let ppl = people.join(", ");
 
-        list.push_str(&dep);
-        list.push_str(&ppl);
-        list.push('\n');
+    for (index, (department, people)) in company.iter().enumerate() {
+        if index > 0 {
+            list.push('\n');
+        }
+
+        let ppl = people.join(", ");
+        list.push_str(&format!("{department}: {ppl}"));
     }
     CommandResult(Ok(list))
 }
