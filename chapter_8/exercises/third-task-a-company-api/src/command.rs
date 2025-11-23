@@ -53,9 +53,6 @@ impl Command {
                 (1, "people") => {
                     cmd.object = Some(Object::People);
                 }
-                (1, "") => {
-                    cmd.object = None;
-                }
                 (1, _) => {
                     cmd.object = Some(Object::User(word.to_string()));
                 }
@@ -70,9 +67,6 @@ impl Command {
                 }
                 (3, "company") => {
                     cmd.destination = Some(Destination::Company);
-                }
-                (3, "") => {
-                    cmd.destination = None;
                 }
                 (3, _) => {
                     cmd.destination = Some(Destination::Department(word.to_string()));
@@ -175,8 +169,8 @@ mod test {
             String::from("Gdd Strzeżymir to Sales"),
             // Test if mixed commadd doesn't works
             String::from("Sales Addes to Mściwój"),
-            // Test if the department name is incorrect it doesn't work
-            String::from("Add Bolesław to Lublin"),
+            // Test the command are uppercase it doesn't work
+            String::from("Add Bolesław To Sales"),
         ];
 
         let mut company: HashMap<String, Vec<String>> = HashMap::new();
@@ -191,6 +185,7 @@ mod test {
 
     #[test]
     fn test_wrong_handling_commands() {
+        // It check the various bad cases in handling commands – ej. the cmds can't be mixed.
         let mut company: HashMap<String, Vec<String>> = HashMap::new();
 
         let incorr_list_usr = Command {
