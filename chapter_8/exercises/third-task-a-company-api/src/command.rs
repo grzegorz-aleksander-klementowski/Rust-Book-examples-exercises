@@ -30,11 +30,11 @@ pub struct Command {
 }
 
 // Make possibili of creating custom extendable commands.
-// For example: "Add Procowój to Sales" will add the user to „Sales” departament, while
-// "List people from Sales" will list people from departament „Sales” but
-// "List people from Company" will list people from all of the departaments
+// For example: "Add Procowój to Sales" will add the user to „Sales” department, while
+// "List people from Sales" will list people from department „Sales” but
+// "List people from Company" will list people from all of the departments
 // Every needed keywors is typed while the rest return „None” exept the places when it's taing the
-// string like „user”, „departament”.
+// string like „user”, „department”.
 impl Command {
     pub fn parse_command(input: String) -> Self {
         let mut cmd = Command::default();
@@ -91,7 +91,7 @@ impl Command {
                 object: Some(Object::User(user)),
                 operator: Some(Operator::To),
                 destination: Some(Destination::Department(department)),
-            } => add_a_user_to_a_departament(user, department, company),
+            } => add_a_user_to_a_department(user, department, company),
             Self {
                 action: Some(Action::List),
                 object: Some(Object::People),
@@ -175,7 +175,7 @@ mod test {
             String::from("Gdd Strzeżymir to Sales"),
             // Test if mixed commadd doesn't works
             String::from("Sales Addes to Mściwój"),
-            // Test if the departament name is incorrect it doesn't work
+            // Test if the department name is incorrect it doesn't work
             String::from("Add Bolesław to Lublin"),
         ];
 

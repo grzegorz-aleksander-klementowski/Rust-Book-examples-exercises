@@ -12,8 +12,8 @@ use std::collections::HashMap;
 use std::fmt::Display;
 use std::io;
 
-// Add a user to a chosen departament
-fn add_a_user_to_a_departament(
+// Add a user to a chosen department
+fn add_a_user_to_a_department(
     user: &str,
     department: &str,
     company: &mut HashMap<String, Vec<String>>,
@@ -84,7 +84,7 @@ fn read_input() -> String {
 
 fn main() {
     println!(
-        "App using commands to communicate. \nUsage: \nadd `user` to `departament`\nlist people from `departament`\nlist people from `company`\n\n"
+        "App using commands to communicate. \nUsage: \nadd `user` to `department`\nlist people from `department`\nlist people from `company`\n\n"
     );
 
     let mut company: HashMap<String, Vec<String>> = HashMap::new();
@@ -114,13 +114,13 @@ mod test {
         let users_to_be_added_to_engineering = ["Bolesław", "Mściwój", "Wojtek"];
 
         for user in users_to_be_added_to_sales {
-            add_a_user_to_a_departament(user, "Sales", &mut company);
+            add_a_user_to_a_department(user, "Sales", &mut company);
         }
         for user in users_to_be_added_to_engineering {
-            add_a_user_to_a_departament(user, "Engineering", &mut company);
+            add_a_user_to_a_department(user, "Engineering", &mut company);
         }
 
-        let result = add_a_user_to_a_departament("Mądromira", "Engineering", &mut company);
+        let result = add_a_user_to_a_department("Mądromira", "Engineering", &mut company);
         assert_eq!(
             result,
             CommandResult(Ok("Added Mądromira to Engineering department.".to_string()))
@@ -152,7 +152,7 @@ mod test {
         ];
 
         for user in users {
-            add_a_user_to_a_departament(user, department, &mut company);
+            add_a_user_to_a_department(user, department, &mut company);
         }
 
         let result = list_ppl_in_a_department(&company, department);
@@ -171,15 +171,15 @@ mod test {
         let users_to_be_added_to_engineering = ["Bolesław", "Mściwój", "Wojtek"];
 
         for user in users_to_be_added_to_sales {
-            add_a_user_to_a_departament(user, "Sales", &mut company);
+            add_a_user_to_a_department(user, "Sales", &mut company);
         }
         for user in users_to_be_added_to_engineering {
-            add_a_user_to_a_departament(user, "Engineering", &mut company);
+            add_a_user_to_a_department(user, "Engineering", &mut company);
         }
 
         let result = list_people_in_the_company(&company);
 
-        // The departament should be printed also alphabetically.
+        // The department should be printed also alphabetically.
         assert_eq!(
             result,
             CommandResult(Ok(
