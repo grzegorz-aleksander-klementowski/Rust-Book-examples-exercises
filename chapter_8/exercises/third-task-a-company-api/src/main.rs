@@ -36,7 +36,9 @@ fn list_ppl_in_a_department(
     let department_people = company.get(department);
     match department_people {
         Some(people) => {
-            let s_list = people.join("\n");
+            let mut sorted_people = people.clone();
+            sorted_people.sort();
+            let s_list = sorted_people.join("\n");
             CommandResult(Ok(s_list))
         }
         None => {
@@ -146,7 +148,7 @@ mod test {
             "Wojtek",
             "Pracomił",
             "Dobromił",
-            "Władysław",
+            "Kwiatomira",
         ];
 
         for user in users {
@@ -157,7 +159,7 @@ mod test {
         assert_eq!(
             result,
             CommandResult(Ok(
-                "Bolesław\nDobromił\nMściwój\nPracomił\nWładysław\nWojtek".to_string()
+                "Bolesław\nDobromił\nKwiatomira\nMściwój\nPracomił\nWojtek".to_string()
             ))
         )
     }
