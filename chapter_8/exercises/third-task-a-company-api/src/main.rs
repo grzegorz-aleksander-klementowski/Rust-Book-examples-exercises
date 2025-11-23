@@ -18,11 +18,13 @@ fn add_a_user_to_a_departament(
     department: &str,
     company: &mut HashMap<String, Vec<String>>,
 ) -> CommandResult {
+    // If there is no Vec for ppl, add it.
     company
         .entry(department.to_string())
         .or_default()
         .push(user.to_string());
     let res_message = format!("Added {user} to {department} department.");
+
     CommandResult(Ok(res_message))
 }
 
@@ -48,14 +50,22 @@ fn list_ppl_in_a_department(
 fn list_people_in_the_company(company: &HashMap<String, Vec<String>>) -> CommandResult {
     let mut list = String::new();
 
-    for (index, (department, people)) in company.iter().enumerate() {
+    // Sort keys
+    let mut read_company: Vec<(&String, &Vec<String>)> = company.iter().collect();
+    read_company.sort_by_key(|(department, _)| department.as_str());
+
+    for (index, (department, people)) in read_company.into_iter().enumerate() {
         if index > 0 {
             list.push('\n');
         }
 
-        let ppl = people.join(", ");
+        let mut people_sorted = people.clone();
+        people_sorted.sort();
+        let ppl = people_sorted.join(", ");
+
         list.push_str(&format!("{department}: {ppl}"));
     }
+
     CommandResult(Ok(list))
 }
 
@@ -126,6 +136,33 @@ mod test {
     }
 
     #[test]
+    fn test_list_people_in_department() {
+        let mut company: HashMap<String, Vec<String>> = HashMap::new();
+        let department = "Sales";
+
+        let users = [
+            "Mściwój",
+            "Bolesław",
+            "Wojtek",
+            "Pracomił",
+            "Dobromił",
+            "Władysław",
+        ];
+
+        for user in users {
+            add_a_user_to_a_departament(user, department, &mut company);
+        }
+
+        let result = list_ppl_in_a_department(&company, department);
+        assert_eq!(
+            result,
+            CommandResult(Ok(
+                "Bolesław\nDobromił\nMściwój\nPracomił\nWładysław\nWojtek".to_string()
+            ))
+        )
+    }
+
+    #[test]
     fn test_list_people_in_the_company() {
         let mut company: HashMap<String, Vec<String>> = HashMap::new();
         let users_to_be_added_to_sales = ["Strzeżymir", "Dobromił", "Władysław"];
@@ -144,7 +181,7 @@ mod test {
         assert_eq!(
             result,
             CommandResult(Ok(
-                "Engineering: Bolesław, Mściwój, Wojtek\nSales: Dobromił, Strzeżymir, Władysław\n"
+                "Engineering: Bolesław, Mściwój, Wojtek\nSales: Dobromił, Strzeżymir, Władysław"
                     .to_string()
             ))
         )
