@@ -46,5 +46,5 @@ members = [
   "./chapter_8/exercises/third-task-a-company-api",
   "./chapter_9/examples/panic",
   "./chapter_9/examples/undefined-panic"
-, "chapter_9/examples/result-open-file"]
+, "chapter_9/examples/result-open-file", "chapter_9/examples/closure-result-open-file", "chapter_9/examples/unwrap", "chapter_9/examples/expect", "chapter_9/examples/return-of-funtion"]
 resolver = "2"
