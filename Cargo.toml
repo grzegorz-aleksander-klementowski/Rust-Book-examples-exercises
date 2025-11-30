@@ -38,6 +38,13 @@ members = [
   "./chapter_7/examples/backyard",
   "./chapter_7/examples/my-project",
   "./chapter_7/examples/restaurant",
-  "./chapter_8/examples/vectors"
-, "chapter_8/examples/strings", "chapter_8/examples/hashmaps", "chapter_8/exercises/first-task-vector-return-media", "chapter_8/exercises/second-task-latin-pig", "chapter_8/exercises/third-task-a-company-api"]
+  "./chapter_8/examples/hashmaps",
+  "./chapter_8/examples/strings",
+  "./chapter_8/examples/vectors",
+  "./chapter_8/exercises/first-task-vector-return-media",
+  "./chapter_8/exercises/second-task-latin-pig",
+  "./chapter_8/exercises/third-task-a-company-api",
+  "./chapter_9/examples/panic",
+  "./chapter_9/examples/undefined-panic"
+, "chapter_9/examples/result-open-file", "chapter_9/examples/closure-result-open-file", "chapter_9/examples/unwrap", "chapter_9/examples/expect", "chapter_9/examples/return-of-funtion", "chapter_9/examples/return-in-main-result", "chapter_9/examples/option-question-mark-operator", "chapter_9/examples/return-in-main-retult-box"]
 resolver = "2"
