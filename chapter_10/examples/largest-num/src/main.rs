@@ -1,5 +1,17 @@
 // I wrote the example from the book on my own
 
+fn largest(array: &[u32]) -> &u32 {
+    let mut largest = &array[0];
+
+    for item in array {
+        if item > largest {
+            largest = item;
+        }
+    }
+
+    largest
+}
+
 fn main() {
     // In the Rust book it's much shorter
     let my_number_list = vec![
@@ -8,15 +20,8 @@ fn main() {
         402, 18, 760, 95, 214, 683, 41, 890, 127, 355, 502, 9, 774, 68, 290, 640, 81, 913, 47, 166,
     ];
 
-    let mut largest = &my_number_list[0];
-
-    for num in &my_number_list {
-        if num > largest {
-            largest = num
-        }
-    }
-
-    println!("The largest number is: {largest}");
+    let largest_num = largest(&my_number_list);
+    println!("The largest number is: {largest_num}");
 
     let my_number_list = vec![
         821, 45, 176, 392, 67, 945, 112, 287, 31, 708, 154, 832, 349, 59, 690, 14, 573, 198, 461,
@@ -25,13 +30,6 @@ fn main() {
         884, 58, 201,
     ];
 
-    let mut largest = &my_number_list[0];
-
-    for num in &my_number_list {
-        if num > largest {
-            largest = num
-        }
-    }
-
-    println!("The largest number is: {largest}");
+    let largest_num = largest(&my_number_list);
+    println!("The largest number is: {largest_num}");
 }
