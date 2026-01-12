@@ -1,18 +1,6 @@
 // I wrote the example from the book on my own
 
-fn largest_num(array: &[u32]) -> &u32 {
-    let mut largest = &array[0];
-
-    for item in array {
-        if item > largest {
-            largest = item;
-        }
-    }
-
-    largest
-}
-
-fn largest_char(array: &[char]) -> &char {
+fn largest<T: PartialOrd>(array: &[T]) -> &T {
     let mut largest = &array[0];
 
     for item in array {
@@ -32,7 +20,7 @@ fn main() {
         402, 18, 760, 95, 214, 683, 41, 890, 127, 355, 502, 9, 774, 68, 290, 640, 81, 913, 47, 166,
     ];
 
-    let res_largest_num = largest_num(&my_number_list);
+    let res_largest_num = largest(&my_number_list);
     println!("The largest number is: {res_largest_num}");
 
     let my_number_list = vec![
@@ -42,7 +30,7 @@ fn main() {
         884, 58, 201,
     ];
 
-    let res_largest_num = largest_num(&my_number_list);
+    let res_largest_num = largest(&my_number_list);
     println!("The largest number is: {res_largest_num}");
 
     let my_char_list = vec![
@@ -50,6 +38,6 @@ fn main() {
         'g', 'j', 'l', 'p', 'v', 'e', 'i', 'o',
     ];
 
-    let res_largest_char = largest_char(&my_char_list);
+    let res_largest_char = largest(&my_char_list);
     println!("The largest char is: {res_largest_char}");
 }
