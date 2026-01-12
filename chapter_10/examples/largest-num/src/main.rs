@@ -44,4 +44,12 @@ fn main() {
 
     let res_largest_num = largest_num(&my_number_list);
     println!("The largest number is: {res_largest_num}");
+
+    let my_char_list = vec![
+        'y', 'm', 'a', 'q', 'k', 'z', 'r', 'x', 'b', 'n', 't', 's', 'h', 'u', 'c', 'w', 'd', 'f',
+        'g', 'j', 'l', 'p', 'v', 'e', 'i', 'o',
+    ];
+
+    let res_largest_char = largest_char(&my_char_list);
+    println!("The largest char is: {res_largest_char}");
 }
