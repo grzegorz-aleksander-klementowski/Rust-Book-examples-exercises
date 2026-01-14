@@ -5,6 +5,12 @@ struct Point<T, U> {
     y: U,
 }
 
+impl<T, U> Point<T, U> {
+    fn get_x(&self) -> &T {
+        &self.x
+    }
+}
+
 fn main() {
     let point_int = Point { x: 5, y: 10 };
     let point_flt = Point { x: 5.0, y: 10.5 };
