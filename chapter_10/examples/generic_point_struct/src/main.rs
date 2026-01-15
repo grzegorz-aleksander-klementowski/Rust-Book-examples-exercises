@@ -1,15 +1,4 @@
 // I did this example on my own
-struct Position<T> {
-    x: T,
-    y: T,
-}
-
-// Example of implementing a generic struct for concrate type
-impl Position<u8> {
-    fn get_y(&self) -> &u8 {
-        &self.y
-    }
-}
 
 struct Point<T, U> {
     x: T,
@@ -22,7 +11,15 @@ impl<T, U> Point<T, U> {
     }
 }
 
-impl Point<u32, usize> {}
+// Implementacja tylko dla Point<u32, usize>
+impl Point<u32, usize> {
+    fn distance(&self) -> f32 {
+        let x = self.x as f32;
+        let y = self.y as f32;
+
+        (x * x + y * y).sqrt()
+    }
+}
 
 fn main() {
     let point_int = Point { x: 5, y: 10 };
