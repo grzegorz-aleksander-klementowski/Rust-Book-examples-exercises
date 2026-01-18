@@ -6,6 +6,13 @@ struct Point<T, U> {
 }
 
 impl<T, U> Point<T, U> {
+    fn mixed_up<X2, Y2>(self, other: Point<X2, Y2>) -> Point<T, Y2> {
+        Point {
+            x: self.x,
+            y: other.y,
+        }
+    }
+
     fn get_x(&self) -> &T {
         &self.x
     }
