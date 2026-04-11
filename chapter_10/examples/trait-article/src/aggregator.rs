@@ -23,6 +23,17 @@ pub struct SocialPost {
     pub repost: bool,
 }
 
+impl SocialPost {
+    pub fn new(username: String, content: String, reply: bool, repost: bool) -> Self {
+        Self {
+            username,
+            content,
+            reply,
+            repost,
+        }
+    }
+}
+
 impl Summary for SocialPost {
     fn summary(&self) -> String {
         format!("{}: {}", self.username, self.content)
