@@ -70,3 +70,15 @@ impl Summary for SocialPost {
         format!("@{}", self.username)
     }
 }
+
+// ---------------TRAIT BOUNDS---------------- \\
+
+// It's a shorter syntax of the trait bound syntax
+/* pub fn notify(item: &impl Summary) {
+    println!("Breaking news: {}", item.summary());
+} */
+
+//the trait bound syntax
+pub fn notify<T: Summary>(item: T) {
+    println!("Breaking news: {}", item.summary());
+}
