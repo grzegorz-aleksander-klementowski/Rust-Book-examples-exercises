@@ -1,3 +1,5 @@
+use std::fmt::Display;
+
 // That's the „interface”. Every type should have it's own implementation
 pub trait Summary {
     // Just signature
@@ -15,6 +17,16 @@ pub struct NewArticle {
     pub location: String,
     pub author: String,
     pub content: String,
+}
+
+impl std::fmt::Display for NewArticle {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(
+            f,
+            "{} in {} by @{} \n {}",
+            self.headline, self.location, self.author, self.content
+        )
+    }
 }
 
 impl NewArticle {
@@ -74,11 +86,27 @@ impl Summary for SocialPost {
 // ---------------TRAIT BOUNDS---------------- \\
 
 // It's a shorter syntax of the trait bound syntax
-/* pub fn notify(item: &impl Summary) {
+/* pub fn notify(item: &(Summary + Display)) { todo!()  {
     println!("Breaking news: {}", item.summary());
 } */
 
 //the trait bound syntax
-pub fn notify<T: Summary>(item: T) {
-    println!("Breaking news: {}", item.summary());
+/* pub fn notify<T: Summary + Display>(item1: &T, item2: &T) {
+    println!(
+        "Breaking news: {} of {}",
+        item1.summary(),
+        item2.summary_author()
+    );
+} */
+
+// Clearer Trait Bounds with where Clauses
+pub fn notify<T>(item1: &T, item2: &T)
+where
+    T: Summary + Display,
+{
+    println!(
+        "Breaking news: {} of {}",
+        item1.summary(),
+        item2.summary_author()
+    );
 }

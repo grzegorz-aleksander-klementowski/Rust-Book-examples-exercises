@@ -1,4 +1,4 @@
-use aggregator::Summary;
+use aggregator::{Summary, notify};
 
 pub mod aggregator;
 
@@ -20,4 +20,5 @@ fn main() {
     );
 
     println!("New article avaible! {}", cybersecurity_article.summary());
+    notify(&cybersecurity_article, &cybersecurity_article);
 }
