@@ -1,4 +1,4 @@
-use aggregator::{Summary, notify};
+use aggregator::{Summary, notify, returns_summarizable};
 
 pub mod aggregator;
 
@@ -11,6 +11,8 @@ fn main() {
     );
 
     println!("1 new post: {}", apply_to_cybersecurity_post.summary());
+
+    println!("2 new post: {}", returns_summarizable().summary());
 
     let cybersecurity_article = aggregator::NewArticle::new(
         "My way to improve ybersecurity skills",

@@ -110,3 +110,12 @@ where
         item2.summary_author()
     );
 }
+
+pub fn returns_summarizable() -> impl Summary {
+    SocialPost {
+        username: "k-gak".to_string(),
+        content: "I got new skills in cybersecurity!".to_string(),
+        reply: false,
+        repost: false,
+    }
+}
