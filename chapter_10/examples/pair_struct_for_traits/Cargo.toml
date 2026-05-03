@@ -1,0 +1,7 @@
+[package]
+name = "pair_struct_for_traits"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+rand = "0.10.1"

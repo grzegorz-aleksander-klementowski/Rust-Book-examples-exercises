@@ -46,5 +46,5 @@ members = [
   "./chapter_8/exercises/third-task-a-company-api",
   "./chapter_9/examples/panic",
   "./chapter_9/examples/undefined-panic"
-, "chapter_9/examples/result-open-file", "chapter_9/examples/closure-result-open-file", "chapter_9/examples/unwrap", "chapter_9/examples/expect", "chapter_9/examples/return-of-funtion", "chapter_9/examples/return-in-main-result", "chapter_9/examples/option-question-mark-operator", "chapter_9/examples/return-in-main-retult-box"]
+, "chapter_9/examples/result-open-file", "chapter_9/examples/closure-result-open-file", "chapter_9/examples/unwrap", "chapter_9/examples/expect", "chapter_9/examples/return-of-funtion", "chapter_9/examples/return-in-main-result", "chapter_9/examples/option-question-mark-operator", "chapter_9/examples/return-in-main-retult-box", "chapter_10/examples/largest-num", "chapter_10/examples/generic_point_struct", "chapter_10/examples/option-generics", "chapter_10/examples/trait-article", "chapter_10/examples/pair_struct_for_traits"]
 resolver = "2"
